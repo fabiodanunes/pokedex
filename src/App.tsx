@@ -1,22 +1,20 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Header from './components/header.tsx'
-// import Grid from './components/grid.tsx'
-// import Card from './components/card.tsx'
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { theme } from "./theme.tsx";
+import Header from "./components/Header.tsx";
+import PokemonCard from "./components/PokemonCard.tsx";
 
-function App() {
-
+export default function App() {
   return (
-    <React.Fragment>
-      <CssBaseline/>
-      {
-        <Box sx={{ bgcolor: '#151515', minHeight: '100vh' }}>
-          <Header/>
-        </Box>
-      }
-    </React.Fragment>
-  )
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header />
+      <PokemonCard
+        image="/images/0001Bulbasaur.png"
+        name="bulbasaur"
+        id={1}
+        types={["grass", "poison"]}
+      />
+    </ThemeProvider>
+  );
 }
-
-export default App
