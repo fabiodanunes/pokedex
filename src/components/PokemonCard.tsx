@@ -1,22 +1,11 @@
+import type { Pokemon } from "../interfaces/Pokemon";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 
-interface PokemonCardProps {
-  image: string;
-  name: string;
-  id: number;
-  types: string[];
-}
-
-export default function PokemonCard({
-  image,
-  name,
-  id,
-  types,
-}: PokemonCardProps) {
+export default function PokemonCard({ image, name, id, types }: Pokemon) {
   return (
     <Paper
       sx={{
