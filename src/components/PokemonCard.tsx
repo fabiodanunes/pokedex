@@ -1,9 +1,9 @@
-import type { Pokemon } from "../interfaces/Pokemon";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
+import type { Pokemon } from "../interfaces/Pokemon";
 
 export default function PokemonCard({ image, name, id, types }: Pokemon) {
   return (
@@ -33,7 +33,7 @@ export default function PokemonCard({ image, name, id, types }: Pokemon) {
       >
         {name}
       </Typography>
-      <Typography> #{id} </Typography>
+      <Typography>#{id}</Typography>
       <Stack
         direction="row"
         spacing={1}

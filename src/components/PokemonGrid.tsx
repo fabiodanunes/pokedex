@@ -1,6 +1,6 @@
-import type { Pokemon } from "../interfaces/Pokemon";
 import Grid from "@mui/material/Grid";
 import PokemonCard from "./PokemonCard";
+import type { Pokemon } from "../interfaces/Pokemon";
 
 export interface MultiplePokemon {
   pokemons: Pokemon[];
@@ -18,9 +18,6 @@ export default function PokemonGrid({ pokemons }: MultiplePokemon) {
         xs: 4,
         sm: 8,
         md: 12,
-      }}
-      sx={{
-        m: 2,
       }}
     >
       {pokemons.map((pokemon) => (
