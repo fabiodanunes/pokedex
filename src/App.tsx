@@ -15,6 +15,7 @@ const pokemonPerPage: number = 15;
 export default function App() {
   const [page, setPage] = useState<number>(1);
   const [gridContent, setGridContent] = useState<GridContent | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const startIndex: number = pokemonPerPage*(page - 1);
   const lastPage: number = Math.ceil((gridContent?.totalPokemons ?? 0)/pokemonPerPage);
@@ -24,6 +25,7 @@ export default function App() {
 
     getPokemonFromAPI(pokemonPerPage, startIndex).then((content) => {
       if (!cancelled) {
+        setLoading(false);
         setGridContent(content);
       }
     });
@@ -33,8 +35,11 @@ export default function App() {
     };
   }, [startIndex]);
 
-  const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
-    setPage(value);
+  const handlePageChange = (_: ChangeEvent<unknown>, newPage: number) => {
+    if(newPage === page) return;
+    
+    setLoading(true);
+    setPage(newPage);
 
     window.scrollTo({
       top: 0,
@@ -48,7 +53,11 @@ export default function App() {
       <CssBaseline />
       <Header />
       <Container sx={{ p: 3 }}>
-        <PokemonGrid pokemons={gridContent?.slicedPokedex ?? []} />
+        <PokemonGrid 
+          pokemons={gridContent?.slicedPokedex ?? []} 
+          loading={loading} 
+          pokemonsPerPage={pokemonPerPage}
+        />
         <Pagination
           count={lastPage}
           page={page}

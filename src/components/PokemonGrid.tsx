@@ -1,12 +1,15 @@
 import Grid from "@mui/material/Grid";
 import PokemonCard from "./PokemonCard";
+import PokemonCardSkeleton from "./PokemonCardSkeleton";
 import type { Pokemon } from "../interfaces/Pokemon";
 
-export interface MultiplePokemon {
+interface PokemonGridProps {
   pokemons: Pokemon[];
+  loading: boolean;
+  pokemonsPerPage: number;
 }
 
-export default function PokemonGrid({ pokemons }: MultiplePokemon) {
+export default function PokemonGrid({ pokemons, loading, pokemonsPerPage }: PokemonGridProps) {
   return (
     <Grid
       container
@@ -20,7 +23,19 @@ export default function PokemonGrid({ pokemons }: MultiplePokemon) {
         md: 12,
       }}
     >
-      {pokemons.map((pokemon) => (
+      {loading 
+        ? Array.from({ length: pokemonsPerPage }, (_, i) => (
+        <Grid 
+          key={i} 
+          size={{ 
+            xs: 2, 
+            sm: 4, 
+            md: 4 
+          }}>
+          <PokemonCardSkeleton />
+        </Grid>
+        ))
+        : pokemons.map((pokemon) => (
         <Grid
           key={pokemon.id}
           size={{
