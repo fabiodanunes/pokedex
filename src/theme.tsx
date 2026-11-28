@@ -7,4 +7,15 @@ export const theme = createTheme({
       default: "#151515",
     },
   },
+  components: {
+    MuiGrid: {
+      defaultProps: {
+        size: {
+          xs: 2, 
+          sm: 4, 
+          md: 4,
+        },
+      },
+    },
+  },
 });

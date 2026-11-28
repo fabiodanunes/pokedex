@@ -25,25 +25,12 @@ export default function PokemonGrid({ pokemons, loading, pokemonsPerPage }: Poke
     >
       {loading 
         ? Array.from({ length: pokemonsPerPage }, (_, i) => (
-        <Grid 
-          key={i} 
-          size={{ 
-            xs: 2, 
-            sm: 4, 
-            md: 4 
-          }}>
+        <Grid key={i}>
           <PokemonCardSkeleton />
         </Grid>
         ))
         : pokemons.map((pokemon) => (
-        <Grid
-          key={pokemon.id}
-          size={{
-            xs: 2,
-            sm: 4,
-            md: 4,
-          }}
-        >
+        <Grid key={pokemon.id}>
           <PokemonCard
             image={pokemon.image}
             name={pokemon.name}
